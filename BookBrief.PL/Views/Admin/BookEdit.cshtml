@@ -1,0 +1,52 @@
+﻿@model BookBrief.DL.Models.Book
+@{
+    ViewData["Title"] = "Kitap Düzenle";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<style>
+    .form-control {
+        background-color: white;
+    }
+</style>
+
+<form method="post" asp-action="BookEdit">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h4>Kitap Düzenle</h4> <hr />
+        </div>
+        <input asp-for="BookId" hidden />
+        <input asp-for="Date" hidden />
+        <input asp-for="ImageUrl" hidden />
+        <input asp-for="_Category" hidden />
+
+
+        <div class="mb-3">
+            <input asp-for="BookTitle" class="form-control" />
+            <span asp-validation-for="BookTitle" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            @Html.TextAreaFor(m => m.Description,10,40, new { @class = "form-control textarea",  })
+            <span asp-validation-for="Description" class="text-danger"></span>
+        </div>
+
+        <div class="mb-3">
+            <input asp-for="Author" class="form-control" />
+            <span asp-validation-for="Author" class="text-danger"></span>
+            <div class="mb-3">
+                @Html.TextAreaFor(m => m.Summary,10,40, new { @class = "form-control textarea",  })
+                <span asp-validation-for="Summary" class="text-danger"></span>
+            </div>
+        </div>
+
+        <div class="mb-3" style="background-color:white;">
+            <select asp-for="CategoryId" asp-items="@ViewBag.v" class="form-select">
+                <option disabled selected>Kitap Kategori Seçiniz</option>
+            </select>
+            <span asp-validation-for="CategoryId" class="text-danger"></span>
+        </div>
+
+        <button type="submit" class="btn btn-warning" style="width:150px">Düzenle</button>
+        <a asp-controller="Admin" asp-action="Books" class="btn btn-secondary" style="width:150px">Geri Dön</a>
+    </div>
+</form>

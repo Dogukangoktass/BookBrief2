@@ -1,0 +1,32 @@
+﻿@model BookBrief.DL.Models.Book
+
+@{
+    ViewData["Title"] = "Kitap Detay";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="row mt-4 container">
+    <div class="col-lg-9 col-md-9 mt-4 mb-4">
+        <div class="card z-index-2 ">
+            <div class="card-body">
+                <h6 class="mb-0 ">@Html.DisplayFor(model => model.BookTitle) - @Html.DisplayFor(model => model.Author)  </h6>
+                <br />
+                <p class="text-sm "><b>Açıklama : </b> @Html.DisplayFor(model => model.Description) </p> <hr />
+                <p class="text-sm "><b>Özet :</b> @Html.DisplayFor(model => model.Summary) </p>
+                <hr class="dark horizontal">
+                <div class="d-flex ">
+                    <i class="material-icons text-sm my-auto me-1">schedule</i>
+                    <p class="mb-0 text-sm">@Html.DisplayFor(model => model.Date) </p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-3 mt-4 mb-4">
+        <img style="max-height:350px;" src="~/images/@Html.DisplayFor(model => model.ImageUrl)" />
+    </div>
+</div>
+
+
+<div>
+    <a asp-controller="Admin" asp-action="BookEdit" asp-route-id="@Model.BookId" class="btn btn-warning">Düzenle</a>
+    <a asp-action="Books" class="btn btn-primary">Geri Dön</a>
+</div>
