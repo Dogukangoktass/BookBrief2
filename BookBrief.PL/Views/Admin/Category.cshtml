@@ -20,7 +20,7 @@
                             <tr>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7">Kategori Id</th>
                                 <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">Kategori Adı</th>
-                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder text-center opacity-7 ps-2">İşlem</th>
+                                <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2">İşlem</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -40,8 +40,10 @@
 
                                     <td class="align-middle">
                                         <p>
-                                            <a class="btn btn-warning" href="~/Admin/CategoryEdit/@item.Id">Güncelle</a> &nbsp;
-                                             <a onclick="popupMethod(@item.Id)" class="btn btn-danger">Sil</a>
+                           @*                 <a class="btn btn-warning" href="~/Admin/CategoryEdit/@item.Id">Güncelle</a> &nbsp;
+                                             <a onclick="popupMethod(@item.Id)" class="btn btn-danger">Sil</a>*@
+                                             <a class="btn btn-link text-dark px-3 mb-0" href="~/Admin/CategoryEdit/@item.Id"><i class="material-icons text-sm me-2">edit</i>Edit</a>
+                                           <a class="btn btn-link text-danger text-gradient px-3 mb-0" onclick="popupMethod(@item.Id)"><i class="material-icons text-sm me-2">delete</i>Delete</a>
                                         </p>
                                     </td>
                                 </tr>
