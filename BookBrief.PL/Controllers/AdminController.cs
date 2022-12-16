@@ -60,18 +60,20 @@ namespace BookBrief.PL.Controllers
             var x = bookRepository.TGet(book.BookId);
             x.ImageUrl = book.ImageUrl;
             x.Date = book.Date;  // yayınlama tarihi (değişmese de olur)
-            x._Category = book._Category;  // null geldiğinden modelstate isvalid false geliyor!!!!!!
+
+            x._Category = book._Category;
+            //x._Category =;  // null geldiğinden modelstate isvalid false geliyor!!!!!!
             if (ModelState.IsValid)
             {
                 x.BookTitle = book.BookTitle;
                 x.Description = book.Description;
-                x.Author=book.Author;
-                
+                x.Author = book.Author;
+
                 x.Summary = book.Summary;
                 x.CategoryId = book.CategoryId;
-              
+
                 bookRepository.TUpdate(x);
-               
+
                 return RedirectToAction("Books");
             }
             return View();
@@ -129,12 +131,15 @@ namespace BookBrief.PL.Controllers
         {
             return View();
         }
+
+
+        #region Category
+
         public IActionResult Category()
         {
             IEnumerable<Category> categories = categoryRepository.TList();
             return View(categories);
         }
-
         public IActionResult CategoryCreate()
         {
             return View();
@@ -160,8 +165,6 @@ namespace BookBrief.PL.Controllers
             categoryRepository.TDelete(x);
             return RedirectToAction("Category");
         }
-
-
         public IActionResult CategoryEdit(int id)
         {
 
@@ -186,7 +189,7 @@ namespace BookBrief.PL.Controllers
             }
             return View();
         }
-
+        #endregion
 
     }
 }
