@@ -1,0 +1,75 @@
+﻿@model BookBrief.DL.Models.BookAdd
+
+@{
+    ViewData["Title"] = "Kitap Yayınla";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<style>
+    .form-control {
+        background-color: white;
+    }
+</style>
+<hr />
+<div class="container col-md-6">
+    <div class="row">
+        <form asp-action="BookCreate" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <div class="form-group">
+                <label asp-for="BookTitle" class="control-label"></label>
+                <input asp-for="BookTitle" class="form-control" />
+                <span asp-validation-for="BookTitle" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+
+                @Html.TextAreaFor(m => m.Description,10,40, new { @class = "form-control textarea",  })
+
+                @*  <input asp-for="Description" class="form-control" />*@
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Author" class="control-label"></label>
+                <input asp-for="Author" class="form-control" />
+                <span asp-validation-for="Author" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label class="control-label">Kitap Kapak Resmi Seçiniz</label>
+                <input type="file" name="ImageUrl" asp-for="ImageUrl" accept="image/*" class="form-control" />
+            </div>
+            <div class="form-group">
+                <label asp-for="Summary" class="control-label"></label>
+                @Html.TextAreaFor(m => m.Summary,10,30, new { @class = "form-control textarea",  })
+                <span asp-validation-for="Summary" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label class="control-label">Kitap Yayın Tarihi Giriniz</label>
+                <input asp-for="Date" class="form-control" />
+                <span asp-validation-for="Date" class="text-danger"></span>
+            </div>
+
+            <br />
+
+            <div class="form-group" style="background-color:white;">
+                <select asp-for="CategoryId" asp-items="@ViewBag.v" class="form-select">
+                    <option disabled selected>Kitap Kategori Seçiniz</option>
+                </select>
+                <span asp-validation-for="CategoryId" class="text-danger"></span>
+            </div>
+
+            <br />
+
+            <div class="form-group">
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+            </div>
+        </form>
+        <div>
+            <a asp-action="Books">Geri Dön</a>
+        </div>
+<br />
+    </div>
+</div>
+
+
