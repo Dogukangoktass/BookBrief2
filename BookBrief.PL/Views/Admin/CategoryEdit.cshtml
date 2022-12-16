@@ -1,0 +1,33 @@
+﻿@model BookBrief.DL.Models.Category
+
+@{
+    ViewData["Title"] = "CategoryEdit";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="CategoryEdit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group" hidden>
+                <label asp-for="Id" class="control-label" hidden></label>
+                <input asp-for="Id" class="form-control" hidden/>
+                <span asp-validation-for="Id" class="text-danger" hidden></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CategoryName" class="control-label"></label>
+                <input asp-for="CategoryName" class="form-control" style="background-color:white;" />
+                <span asp-validation-for="CategoryName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Kaydet" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Category">Geri Dön</a>
+</div>
+
