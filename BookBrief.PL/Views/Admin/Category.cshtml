@@ -8,8 +8,9 @@
     <div class="col-12">
         <div class="card my-4">
             <div class="card-header p-0 position-relative mt-n4 mx-3 z-index-2">
-                <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3">
-                    <h6 class="text-white text-capitalize ps-3">Kategoriler</h6>
+                <div class="bg-gradient-primary shadow-primary border-radius-lg pt-4 pb-3 row">
+                    <h6 class="text-white text-capitalize ps-3 col-md-10">@ViewData["Title"]</h6>
+                    <a class="btn btn-secondary col-md-2" href="/Admin/CategoryCreate">Kategori Ekle</a>
                 </div>
             </div>
             <div class="card-body px-0 pb-2">
@@ -38,7 +39,10 @@
                                     </td>
 
                                     <td class="align-middle">
-                                        <p>Güncelle | Sil</p>
+                                        <p>
+                                            <a class="btn btn-warning" href="~/Admin/CategoryEdit/@item.Id">Güncelle</a> &nbsp;
+                                             <a onclick="popupMethod(@item.Id)" class="btn btn-danger">Sil</a>
+                                        </p>
                                     </td>
                                 </tr>
                             }
@@ -49,3 +53,27 @@
         </div>
     </div>
 </div>
+
+<script>
+    function popupMethod(id) {
+        swal({
+            title: "Emin misiniz?",
+            text: "Kategori bilgisini silmek için emin misiniz?",
+            icon: "warning",
+            buttons: true,
+            dangerMode: true,
+        })
+            .then((willDelete) => {
+                if (willDelete) {
+                    window.location.replace('/Admin/CategoryDelete/' + id),
+                        swal("Poof! Kategori Silindi!", {
+                            icon: "success",
+                        });
+                }
+            });
+    }
+
+
+</script>
+
+<script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>

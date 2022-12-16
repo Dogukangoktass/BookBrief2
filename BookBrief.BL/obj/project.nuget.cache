@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "BBgpE/zrXXzAnYraI/ghWOOP5EAx+VgZTfaT7MrRn0SOqE+gY3ioT/VBm6t1Go6YEbOsUutXEODmu66kxiWZhw==",
+  "dgSpecHash": "obKsJZja8Wirt29fyOAqPXis4+XBbv3ttgEtCPEArybHGtVsDp6DoZGTdLBX83BMg8apoKaXEBsj9zZMbySQNQ==",
   "success": true,
-  "projectFilePath": "C:\\Project\\BookBrief\\BookBrief.BL\\BookBrief.BL.csproj",
+  "projectFilePath": "C:\\Project\\BookBrief2\\BookBrief.BL\\BookBrief.BL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dogukan\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Dogukan\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

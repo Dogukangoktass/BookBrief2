@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "YqsbBM2XeiCJ5xbxCrjq99Io85rGZpo21y+X11sPtmoD8E52qxqNl+kxyXzAKk3lvakBUtW9PXd4P/etz4O1zA==",
+  "dgSpecHash": "j0oxbs7RQayhqJaCFGneIoIcsavlnzXUrY/Y7vUtKrcKgPljtEWXbnbhYPRLhmioNuwFHmaViz6XqKwF9yC7dw==",
   "success": true,
-  "projectFilePath": "C:\\Project\\BookBrief\\BookBrief.PL\\BookBrief.PL.csproj",
+  "projectFilePath": "C:\\Project\\BookBrief2\\BookBrief.PL\\BookBrief.PL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Dogukan\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Dogukan\\.nuget\\packages\\messagepack\\2.1.152\\messagepack.2.1.152.nupkg.sha512",

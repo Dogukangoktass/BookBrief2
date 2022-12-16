@@ -12,3 +12,17 @@ C:\Project\BookBrief\BookBrief.DL\obj\Debug\net6.0\BookBrief.DL.pdb
 C:\Project\BookBrief\BookBrief.DL\obj\Debug\net6.0\ref\BookBrief.DL.dll
 C:\Project\BookBrief\BookBrief.DL\bin\Debug\net6.0\BookBrief.DL.runtimeconfig.json
 C:\Project\BookBrief\BookBrief.DL\obj\Debug\net6.0\BookBrief.DL.genruntimeconfig.cache
+C:\Project\BookBrief2\BookBrief.DL\bin\Debug\net6.0\BookBrief.DL.deps.json
+C:\Project\BookBrief2\BookBrief.DL\bin\Debug\net6.0\BookBrief.DL.runtimeconfig.json
+C:\Project\BookBrief2\BookBrief.DL\bin\Debug\net6.0\BookBrief.DL.dll
+C:\Project\BookBrief2\BookBrief.DL\bin\Debug\net6.0\BookBrief.DL.pdb
+C:\Project\BookBrief2\BookBrief.DL\obj\Debug\net6.0\BookBrief.DL.csproj.AssemblyReference.cache
+C:\Project\BookBrief2\BookBrief.DL\obj\Debug\net6.0\BookBrief.DL.GeneratedMSBuildEditorConfig.editorconfig
+C:\Project\BookBrief2\BookBrief.DL\obj\Debug\net6.0\BookBrief.DL.AssemblyInfoInputs.cache
+C:\Project\BookBrief2\BookBrief.DL\obj\Debug\net6.0\BookBrief.DL.AssemblyInfo.cs
+C:\Project\BookBrief2\BookBrief.DL\obj\Debug\net6.0\BookBrief.DL.csproj.CoreCompileInputs.cache
+C:\Project\BookBrief2\BookBrief.DL\obj\Debug\net6.0\BookBrief.DL.dll
+C:\Project\BookBrief2\BookBrief.DL\obj\Debug\net6.0\refint\BookBrief.DL.dll
+C:\Project\BookBrief2\BookBrief.DL\obj\Debug\net6.0\BookBrief.DL.pdb
+C:\Project\BookBrief2\BookBrief.DL\obj\Debug\net6.0\BookBrief.DL.genruntimeconfig.cache
+C:\Project\BookBrief2\BookBrief.DL\obj\Debug\net6.0\ref\BookBrief.DL.dll

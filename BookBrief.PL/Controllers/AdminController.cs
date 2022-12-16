@@ -115,6 +115,16 @@ namespace BookBrief.PL.Controllers
             }
             return View();
         }
+        public IActionResult BookDelete(int id) // view yok
+        {
+            var x = bookRepository.TGet(id);
+            if (x == null)
+            {
+                return NotFound();
+            }
+            bookRepository.TDelete(x);
+            return RedirectToAction("Books");
+        }
         public IActionResult Comments()
         {
             return View();
@@ -124,6 +134,59 @@ namespace BookBrief.PL.Controllers
             IEnumerable<Category> categories = categoryRepository.TList();
             return View(categories);
         }
+
+        public IActionResult CategoryCreate()
+        {
+            return View();
+        }
+        [HttpPost]
+        public IActionResult CategoryCreate(Category ca)
+        {
+            if (ModelState.IsValid)
+            {
+                categoryRepository.TAdd(ca);
+                return RedirectToAction("Category");
+            }
+            return View();
+        }
+
+        public IActionResult CategoryDelete(int id) // view yok
+        {
+            var x = categoryRepository.TGet(id);
+            if (x == null)
+            {
+                return NotFound();
+            }
+            categoryRepository.TDelete(x);
+            return RedirectToAction("Category");
+        }
+
+
+        public IActionResult CategoryEdit(int id)
+        {
+
+            var x = categoryRepository.TGet(id);
+            if (id == 0)
+            {
+                return NotFound();
+            }
+            return View(x);
+        }
+
+        [HttpPost]
+        public IActionResult CategoryEdit(Category cat)
+        {
+            var x = categoryRepository.TGet(cat.Id);
+            if (ModelState.IsValid)
+            {
+                x.CategoryName = cat.CategoryName;
+                x.Id = cat.Id;
+                categoryRepository.TUpdate(x);
+                return RedirectToAction("Category");
+            }
+            return View();
+        }
+
 
     }
 }
