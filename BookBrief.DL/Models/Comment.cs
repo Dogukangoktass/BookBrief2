@@ -18,7 +18,7 @@ namespace BookBrief.DL.Models
         public Book _Book { get; set; }
 
         public int UserId { get; set; }
-        public User _User { get; set; }
+        public UserModel _User { get; set; }
 
     }
 }

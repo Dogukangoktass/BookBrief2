@@ -167,7 +167,7 @@ namespace BookBrief.PL.Controllers
         }
         public IActionResult CategoryEdit(int id)
         {
-
+ 
             var x = categoryRepository.TGet(id);
             if (id == 0)
             {

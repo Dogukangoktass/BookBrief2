@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace BookBrief.BL.Repository
 {
-    public class UserRepository : GenericRepository<User>
+    public class UserRepository : GenericRepository<UserModel>
     {
     }
 }

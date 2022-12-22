@@ -538,3 +538,5 @@ C:\Project\BookBrief2\BookBrief.PL\obj\Debug\net6.0\refint\BookBrief.PL.dll
 C:\Project\BookBrief2\BookBrief.PL\obj\Debug\net6.0\BookBrief.PL.pdb
 C:\Project\BookBrief2\BookBrief.PL\obj\Debug\net6.0\BookBrief.PL.genruntimeconfig.cache
 C:\Project\BookBrief2\BookBrief.PL\obj\Debug\net6.0\ref\BookBrief.PL.dll
+C:\Project\BookBrief2\BookBrief.PL\bin\Debug\net6.0\Firebase.Auth.dll
+C:\Project\BookBrief2\BookBrief.PL\bin\Debug\net6.0\System.ServiceModel.dll
