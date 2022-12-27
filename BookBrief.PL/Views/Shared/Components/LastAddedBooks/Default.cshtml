@@ -1,0 +1,49 @@
+﻿@model IEnumerable<BookBrief.DL.Models.Book>
+
+
+<section class="our-client section-padding best-selling">
+    <div class="container">
+        <div class="row justify-content-between">
+            <div class="col-xl-12 col-lg-12 col-md-12">
+                <div class="section-tittle mb-40 ">
+                    <h2 style="text-align:center;">Son Eklenenler</h2>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container">
+
+        <div class="tab-content" id="nav-tabContent">
+            <div class="tab-pane fade show active" id="nav-one" role="tabpanel" aria-labelledby="nav-one-tab">
+
+                <div class="row">
+                    @foreach (var item in Model)
+                    {
+                        <div class="col-xl-2 col-lg-3 col-md-4 col-sm-6">
+                            <div class="properties pb-30">
+                                <div class="properties-card">
+                                    <div class="properties-img">
+                                        <a href="Home/BookDetail/@item.BookId"><img src="~/images/@item.ImageUrl" style="height:300px;" alt=""></a>
+                                    </div>
+                                    <div class="properties-caption properties-caption2">
+                                        <h3><a href="Home/BookDetail/@item.BookId">@item.BookTitle</a></h3>
+                                        <p>@item.Author</p>
+                                        <div class="properties-footer d-flex justify-content-between align-items-center">
+                                            <div class="review">
+                                                <p>3 Yorum</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    }
+                </div>
+            </div>
+
+
+        </div>
+    </div>
+</section>
+
+

@@ -19,6 +19,7 @@ namespace BookBrief.DL.Models
         public DbSet<Category> Category { get; set; }
         public DbSet<Comment> Comment { get; set; }
         public DbSet<UserModel> User { get; set; }
+        public DbSet<Roles> Roles { get; set; }
     }
 }
 

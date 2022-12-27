@@ -18,6 +18,10 @@ namespace BookBrief.PL.Controllers
         }
         public IActionResult Index()
         {
+            TempData["KitapSayisi"] = context.Book.Count();
+            TempData["KullaniciSayisi"] = context.User.Count();
+            TempData["YorumSayisi"] = context.Comment.Count();
+            TempData["KategoriSayisi"] = context.Category.Count();
             return View();
         }
         public IActionResult Books()
@@ -190,6 +194,17 @@ namespace BookBrief.PL.Controllers
             return View();
         }
         #endregion
+
+
+
+        public IActionResult LogOut()
+        {
+            HttpContext.Session.Remove("_UserToken");
+
+            return RedirectToAction("Index","Home");
+        }
+
+
 
     }
 }

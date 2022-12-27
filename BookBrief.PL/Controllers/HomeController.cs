@@ -74,7 +74,11 @@ namespace BookBrief.PL.Controllers
         {
             try
             {
-                //log in an existing user
+                //var dataValue = c.User.FirstOrDefault(x => x.Email == Email && x.Password == Password);
+              
+               
+
+
                 var fbAuthLink = await auth
                                 .SignInWithEmailAndPasswordAsync(Email, Password);
                 TempData["userName"] = Email;
@@ -116,7 +120,11 @@ namespace BookBrief.PL.Controllers
 
         #region PAGES
 
-      
+        public IActionResult BookDetail(int id)
+        {
+            var result = c.Book.Where(x => x.BookId == id);
+            return View(result);
+        }
         public IActionResult Categories()
         {
             return View();

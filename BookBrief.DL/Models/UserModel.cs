@@ -23,6 +23,8 @@ namespace BookBrief.DL.Models
 
         [Required(ErrorMessage = "Şifre Boş Geçilemez!")]
 
+        public int RoleId { get; set; }
+        public Roles _Roles { get; set; }
         public string Password { get; set; }
 
     }

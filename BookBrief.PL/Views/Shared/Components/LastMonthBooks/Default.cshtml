@@ -1,0 +1,39 @@
+﻿@model IEnumerable<BookBrief.DL.Models.Book>
+
+
+<div class="card-body px-0 pb-2">
+    <div class="table-responsive">
+        <table class="table align-items-center mb-0">
+            <thead>
+                <tr>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Kapak Resim </th>
+                    <th class="text-uppercase text-secondary text-xxs font-weight-bolder opacity-7 ps-2"> Kitap Adı </th>
+                    <th class="text-center text-uppercase text-secondary text-xxs font-weight-bolder opacity-7"> Yazar </th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>
+                            <div>
+                                <img src="~/images/@item.ImageUrl" class="avatar avatar-sm me-3" alt="xd">
+                            </div>
+                        </td>
+                        <td>
+                            <div class="d-flex px-2 py-1">
+
+                                <div class="d-flex flex-column justify-content-center">
+                                    <h6 class="mb-0 text-sm"> @item.BookTitle </h6>
+                                </div>
+                            </div>
+                        </td>
+                        <td class="align-middle text-center text-sm">
+                            <span class="text-xs font-weight-bold"> @item.Author </span>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>

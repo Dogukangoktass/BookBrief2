@@ -1,6 +1,6 @@
 {
   "Version": 1,
-  "Hash": "62FlV47CbO82ZqkS6gxKi/Bqsg/NbnyZTXeTS5/ajUE=",
+  "Hash": "Gs8YKMvtxv0/pyxZgjzMANrYqdZ3gqLkiP4eDsvYQn8=",
   "Source": "BookBrief.PL",
   "BasePath": "_content/BookBrief.PL",
   "Mode": "Default",
@@ -7019,6 +7019,23 @@
       "CopyToOutputDirectory": "Never",
       "CopyToPublishDirectory": "PreserveNewest",
       "OriginalItemSpec": "wwwroot\\images\\4fba0828-e0e4-41f8-b20e-e04e3ea95b38.png"
+    },
+    {
+      "Identity": "C:\\Project\\BookBrief2\\BookBrief.PL\\wwwroot\\images\\a9809693-a69a-49c1-b56f-621cf1c39a33.jpg",
+      "SourceId": "BookBrief.PL",
+      "SourceType": "Discovered",
+      "ContentRoot": "C:\\Project\\BookBrief2\\BookBrief.PL\\wwwroot\\",
+      "BasePath": "_content/BookBrief.PL",
+      "RelativePath": "images/a9809693-a69a-49c1-b56f-621cf1c39a33.jpg",
+      "AssetKind": "All",
+      "AssetMode": "All",
+      "AssetRole": "Primary",
+      "RelatedAsset": "",
+      "AssetTraitName": "",
+      "AssetTraitValue": "",
+      "CopyToOutputDirectory": "Never",
+      "CopyToPublishDirectory": "PreserveNewest",
+      "OriginalItemSpec": "wwwroot\\images\\a9809693-a69a-49c1-b56f-621cf1c39a33.jpg"
     },
     {
       "Identity": "C:\\Project\\BookBrief2\\BookBrief.PL\\wwwroot\\images\\d0ce4f70-a4bd-4a11-978a-ac24872df9c8.png",
