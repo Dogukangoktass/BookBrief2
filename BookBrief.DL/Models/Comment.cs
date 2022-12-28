@@ -16,7 +16,7 @@ namespace BookBrief.DL.Models
         public DateTime Date { get; set; }
         public int BookId { get; set; }
         public Book _Book { get; set; }
-
+        public bool IsShared { get; set; }
         public int UserId { get; set; }
         //public UserModel _User { get; set; }
 

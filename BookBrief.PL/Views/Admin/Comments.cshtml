@@ -1,4 +1,6 @@
-﻿@{
+﻿@model IEnumerable<BookBrief.DL.Models.CommentsVM>
+
+@{
     ViewData["Title"] = "Yorumlar";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
@@ -11,29 +13,22 @@
             </div>
             <div class="card-body pt-4 p-3">
                 <ul class="list-group">
-                   
-                    <li class="list-group-item border-0 d-flex p-4 mb-2 mt-3 bg-gray-100 border-radius-lg">
-                        <div class="d-flex flex-column">
-                            <h6 class="mb-3 text-sm">Lucas Harper</h6>
-                            <span class="mb-2 text-xs">Kitap Adı: <span class="text-dark font-weight-bold ms-sm-2">Stone Tech Zone</span></span>
-                            <span class="mb-2 text-xs">Mail Adresi: <span class="text-dark ms-sm-2 font-weight-bold">lucas@stone-tech.com</span></span>
-                            <span class="text-xs">VAT Number: <span class="text-dark ms-sm-2 font-weight-bold">FRB1235476</span></span>
-                        </div>
-                        <div class="ms-auto text-end">
-                            <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="material-icons text-sm me-2">delete</i>Delete</a>
-                        </div>
-                    </li>
-                    <li class="list-group-item border-0 d-flex p-4 mb-2 mt-3 bg-gray-100 border-radius-lg">
-                        <div class="d-flex flex-column">
-                            <h6 class="mb-3 text-sm">Ethan James</h6>
-                            <span class="mb-2 text-xs">Kitap Adı: <span class="text-dark font-weight-bold ms-sm-2">Fiber Notion</span></span>
-                            <span class="mb-2 text-xs">Mail Adresi: <span class="text-dark ms-sm-2 font-weight-bold">ethan@fiber.com</span></span>
-                            <span class="text-xs">VAT Number: <span class="text-dark ms-sm-2 font-weight-bold">FRB1235476</span></span>
-                        </div>
-                        <div class="ms-auto text-end">
-                            <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="material-icons text-sm me-2">delete</i>Delete</a>
-                        </div>
-                    </li>
+
+                    @foreach (var item in Model)
+                    {
+
+                        <li class="list-group-item border-0 d-flex p-4 mb-2 mt-3 bg-gray-100 border-radius-lg">
+                            <div class="d-flex flex-column">
+                                <h6 class="mb-3 text-sm">@item._User.UserName</h6>
+                                <span class="mb-2 text-xs">Kitap Adı: <span class="text-dark font-weight-bold ms-sm-2">@item._Book.BookTitle</span></span>
+                                <span class="mb-2 text-xs">Tarih: <span class="text-dark ms-sm-2 font-weight-bold">@item._Comments.Date.ToShortDateString()</span></span>
+                            </div>
+                            <div class="ms-auto text-end">
+                                <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="material-icons text-sm me-2">delete</i>Sil</a>
+                            </div>
+                        </li>
+                    }
+
                 </ul>
             </div>
         </div>

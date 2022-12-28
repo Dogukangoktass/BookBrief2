@@ -10,11 +10,13 @@ using System.Security.Claims;
 
 namespace BookBrief.PL.Controllers
 {
- 
+
+    [Authorize(Roles = "Admin")]
     public class AdminController : Controller
     {
         CategoryRepository categoryRepository = new CategoryRepository();
         BookRepository bookRepository = new BookRepository();
+        CommentRepository commentRepository = new CommentRepository();
         Context context = new Context();
         private readonly IWebHostEnvironment _webHostEnvironment;
         public AdminController(IWebHostEnvironment webHostEnvironment)
@@ -26,7 +28,6 @@ namespace BookBrief.PL.Controllers
             HttpContext.Request.Cookies.TryGetValue(key, out string id);
             return id;
         }
-
 
         public IActionResult Index()
         {
@@ -157,6 +158,14 @@ namespace BookBrief.PL.Controllers
         }
         public IActionResult Comments()
         {
+            CommentsVM commentVM = new CommentsVM();
+
+           
+
+
+            //var comments = context.Comment.ToList();
+            IEnumerable<Category> categories = categoryRepository.TList();
+
             return View();
         }
 
@@ -195,7 +204,7 @@ namespace BookBrief.PL.Controllers
         }
         public IActionResult CategoryEdit(int id)
         {
- 
+
             var x = categoryRepository.TGet(id);
             if (id == 0)
             {
@@ -221,12 +230,12 @@ namespace BookBrief.PL.Controllers
 
 
 
-     
+
 
         public async Task<IActionResult> LogOut()
         {
             await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
-          
+
             Response.Cookies.Delete("userId");
             return RedirectToAction("Index", "Home");
         }

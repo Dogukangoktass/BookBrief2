@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 namespace BookBrief.PL.Controllers
 {
-    [AllowAnonymous]
+   
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -27,10 +27,12 @@ namespace BookBrief.PL.Controllers
                         new FirebaseConfig("AIzaSyDWyQN8lInBQ8GlmZeXRMGURK4nJLwQoWc"));
 
         }
-
+        [AllowAnonymous]
         public IActionResult Index()
         {
-           ViewBag.kisi= GetCookie("userId");
+
+          
+            ViewBag.kisi= GetCookie("userId");
             return View();
         }
 
@@ -45,11 +47,12 @@ namespace BookBrief.PL.Controllers
             return id;
         }
 
-
+        [AllowAnonymous]
         public IActionResult Register()
         {
             return View();
         }
+        [AllowAnonymous]
 
         [HttpPost]
         public async Task<IActionResult> Register(SignUp loginModel)
@@ -82,7 +85,7 @@ namespace BookBrief.PL.Controllers
 
         }
 
-
+        [AllowAnonymous]
         public IActionResult Login()
         {
             //ClaimsPrincipal claimUser = HttpContext.User;
@@ -94,6 +97,7 @@ namespace BookBrief.PL.Controllers
             return View();
         }
         [HttpPost]
+        [AllowAnonymous]
         public async Task<IActionResult> Login(string Email, string Password)
         {
 
@@ -149,9 +153,10 @@ namespace BookBrief.PL.Controllers
 
         }
 
+        [Authorize(Roles ="User")]
         public IActionResult Profile()
         {
-            var userId = HttpContext.Session.GetInt32("_UserToken");
+            int userId =  Convert.ToInt16(GetCookie("userId"));
             var result = c.User.FirstOrDefault(x => x.Id == userId);
             ViewBag.user = result;
 
@@ -170,51 +175,60 @@ namespace BookBrief.PL.Controllers
 
         #region PAGES
 
+        [AllowAnonymous]
         public IActionResult BookDetail(int id)
         {
+            BookCommentsVM bcomments = new BookCommentsVM();
 
-            var userId = HttpContext.Session.GetInt32("_UserToken");
-            var _user = c.User.FirstOrDefault(x => x.Id == userId);
-            ViewBag.user = _user;
+            bcomments._Book = c.Book.Where(x => x.BookId == id);
+            bcomments._Comment = c.Comment.Where(x => x.BookId == id);
 
-            var result = c.Book.Where(x => x.BookId == id);
+             var result = c.Book.Where(x => x.BookId == id);
             return View(result);
         }
+        [AllowAnonymous]
         public IActionResult ShareComment(int bookid, string text)
         {
-            var userId = HttpContext.Session.GetInt32("_UserToken");
+            int userId = Convert.ToInt16(GetCookie("userId"));
+            var result = c.User.FirstOrDefault(x => x.Id == userId);
 
             Comment cmt = new Comment();
-            cmt.UserId= userId.Value;
+            cmt.UserId= userId;
             cmt.Date = DateTime.Today;
             cmt.Text = text;
             cmt.BookId = bookid;
-           // cmt._User= c.User.FirstOrDefault(x => x.Id == userId.Value);
+            cmt.IsShared = false;
+            // cmt._User= c.User.FirstOrDefault(x => x.Id == userId.Value);
+            if (ModelState.IsValid)
+            {
+                commentRepository.TAdd(cmt);
+                TempData["yorum"] = 1;
+            }
 
-            commentRepository.TAdd(cmt);
-
-            return View("BookDetail",bookid);
+            return RedirectToAction("BookDetail", new { id = bookid });
         }
 
-
+        [AllowAnonymous]
         public IActionResult Categories()
         {
             return View();
         }
+        [AllowAnonymous]
         public IActionResult About()
         {
             return View();
         }
+        [AllowAnonymous]
         public IActionResult Contact()
         {
             return View();
         }
-
+        [AllowAnonymous]
         public IActionResult Privacy()
         {
             return View();
         }
-
+        [AllowAnonymous]
         [ResponseCache(Duration = 0, Location = ResponseCacheLocation.None, NoStore = true)]
         public IActionResult Error()
         {
