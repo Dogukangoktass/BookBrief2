@@ -1,11 +1,16 @@
 ﻿using BookBrief.BL.Repository;
 using BookBrief.DL.Models;
+using Microsoft.AspNetCore.Authentication;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
+using System.Security.Claims;
 
 namespace BookBrief.PL.Controllers
 {
+ 
     public class AdminController : Controller
     {
         CategoryRepository categoryRepository = new CategoryRepository();
@@ -16,8 +21,27 @@ namespace BookBrief.PL.Controllers
         {
             _webHostEnvironment = webHostEnvironment;
         }
+        public string GetCookie(string key)
+        {
+            HttpContext.Request.Cookies.TryGetValue(key, out string id);
+            return id;
+        }
+
+
         public IActionResult Index()
         {
+            //var userId = HttpContext.Session.GetInt32("_UserToken");
+            //var result = context.User.FirstOrDefault(x => x.Id == userId);
+            //ViewBag.user = result;
+
+            //ViewBag.kisi = GetCookie("userId");
+            int id = Convert.ToInt16(GetCookie("userId"));
+            var result = context.User.FirstOrDefault(x => x.Id == id);
+            ViewBag.kisi = result;
+
+            //var name = User.Claims.Where(x => x.Type == ClaimTypes.Name).FirstOrDefault().Value;
+
+
             TempData["KitapSayisi"] = context.Book.Count();
             TempData["KullaniciSayisi"] = context.User.Count();
             TempData["YorumSayisi"] = context.Comment.Count();
@@ -197,11 +221,14 @@ namespace BookBrief.PL.Controllers
 
 
 
-        public IActionResult LogOut()
-        {
-            HttpContext.Session.Remove("_UserToken");
+     
 
-            return RedirectToAction("Index","Home");
+        public async Task<IActionResult> LogOut()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+          
+            Response.Cookies.Delete("userId");
+            return RedirectToAction("Index", "Home");
         }
 
 

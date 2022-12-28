@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookBrief.DL.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20221222085837_RolesAdded")]
-    partial class RolesAdded
+    [Migration("20221228134938_databaseupdate")]
+    partial class databaseupdate
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -103,33 +103,11 @@ namespace BookBrief.DL.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
-                    b.Property<int>("_UserId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
 
                     b.HasIndex("BookId");
 
-                    b.HasIndex("_UserId");
-
                     b.ToTable("Comment");
-                });
-
-            modelBuilder.Entity("BookBrief.DL.Models.Roles", b =>
-                {
-                    b.Property<int>("RoleId")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("RoleId"), 1L, 1);
-
-                    b.Property<string>("RoleName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("RoleId");
-
-                    b.ToTable("Roles");
                 });
 
             modelBuilder.Entity("BookBrief.DL.Models.UserModel", b =>
@@ -152,19 +130,15 @@ namespace BookBrief.DL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("RoleId")
-                        .HasColumnType("int");
+                    b.Property<string>("RoleName")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("UserName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("_RolesRoleId")
-                        .HasColumnType("int");
-
                     b.HasKey("Id");
-
-                    b.HasIndex("_RolesRoleId");
 
                     b.ToTable("User");
                 });
@@ -188,26 +162,7 @@ namespace BookBrief.DL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BookBrief.DL.Models.UserModel", "_User")
-                        .WithMany()
-                        .HasForeignKey("_UserId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("_Book");
-
-                    b.Navigation("_User");
-                });
-
-            modelBuilder.Entity("BookBrief.DL.Models.UserModel", b =>
-                {
-                    b.HasOne("BookBrief.DL.Models.Roles", "_Roles")
-                        .WithMany()
-                        .HasForeignKey("_RolesRoleId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("_Roles");
                 });
 #pragma warning restore 612, 618
         }

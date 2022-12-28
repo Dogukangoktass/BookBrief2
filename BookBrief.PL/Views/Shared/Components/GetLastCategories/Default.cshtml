@@ -1,0 +1,13 @@
+﻿@model IEnumerable<BookBrief.DL.Models.Category>
+
+
+
+
+<ul>
+
+    @foreach (var item in Model)
+    {
+        <li><a href="#">@item.CategoryName</a></li>
+    }
+
+</ul>

@@ -4,43 +4,43 @@
 
 namespace BookBrief.DL.Migrations
 {
-    public partial class RolesIdAdded2 : Migration
+    public partial class databaseupdate : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropForeignKey(
-                name: "FK_User_Roles__RolesRoleId",
-                table: "User");
+                name: "FK_Comment_User__UserId",
+                table: "Comment");
 
             migrationBuilder.DropIndex(
-                name: "IX_User__RolesRoleId",
-                table: "User");
+                name: "IX_Comment__UserId",
+                table: "Comment");
 
             migrationBuilder.DropColumn(
-                name: "_RolesRoleId",
-                table: "User");
+                name: "_UserId",
+                table: "Comment");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.AddColumn<int>(
-                name: "_RolesRoleId",
-                table: "User",
+                name: "_UserId",
+                table: "Comment",
                 type: "int",
                 nullable: false,
                 defaultValue: 0);
 
             migrationBuilder.CreateIndex(
-                name: "IX_User__RolesRoleId",
-                table: "User",
-                column: "_RolesRoleId");
+                name: "IX_Comment__UserId",
+                table: "Comment",
+                column: "_UserId");
 
             migrationBuilder.AddForeignKey(
-                name: "FK_User_Roles__RolesRoleId",
-                table: "User",
-                column: "_RolesRoleId",
-                principalTable: "Roles",
-                principalColumn: "RoleId",
+                name: "FK_Comment_User__UserId",
+                table: "Comment",
+                column: "_UserId",
+                principalTable: "User",
+                principalColumn: "Id",
                 onDelete: ReferentialAction.Cascade);
         }
     }

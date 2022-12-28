@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace BookBrief.DL.Migrations
 {
     [DbContext(typeof(Context))]
-    [Migration("20221210203908_mig2")]
-    partial class mig2
+    [Migration("20221227212501_dbCreated")]
+    partial class dbCreated
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -43,6 +43,9 @@ namespace BookBrief.DL.Migrations
                     b.Property<int>("CategoryId")
                         .HasColumnType("int");
 
+                    b.Property<DateTime>("Date")
+                        .HasColumnType("datetime2");
+
                     b.Property<string>("Description")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
@@ -55,17 +58,9 @@ namespace BookBrief.DL.Migrations
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int>("TypeId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("_TypeofBookId")
-                        .HasColumnType("int");
-
                     b.HasKey("BookId");
 
                     b.HasIndex("CategoryId");
-
-                    b.HasIndex("_TypeofBookId");
 
                     b.ToTable("Book");
                 });
@@ -108,33 +103,19 @@ namespace BookBrief.DL.Migrations
                     b.Property<int>("UserId")
                         .HasColumnType("int");
 
+                    b.Property<int>("_UserId")
+                        .HasColumnType("int");
+
                     b.HasKey("Id");
 
                     b.HasIndex("BookId");
 
-                    b.HasIndex("UserId");
+                    b.HasIndex("_UserId");
 
                     b.ToTable("Comment");
                 });
 
-            modelBuilder.Entity("BookBrief.DL.Models.TypeofBook", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int");
-
-                    SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"), 1L, 1);
-
-                    b.Property<string>("TypeName")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TypeofBook");
-                });
-
-            modelBuilder.Entity("BookBrief.DL.Models.User", b =>
+            modelBuilder.Entity("BookBrief.DL.Models.UserModel", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -151,6 +132,10 @@ namespace BookBrief.DL.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("RoleName")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
@@ -171,15 +156,7 @@ namespace BookBrief.DL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BookBrief.DL.Models.TypeofBook", "_TypeofBook")
-                        .WithMany()
-                        .HasForeignKey("_TypeofBookId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
                     b.Navigation("_Category");
-
-                    b.Navigation("_TypeofBook");
                 });
 
             modelBuilder.Entity("BookBrief.DL.Models.Comment", b =>
@@ -190,9 +167,9 @@ namespace BookBrief.DL.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("BookBrief.DL.Models.User", "_User")
+                    b.HasOne("BookBrief.DL.Models.UserModel", "_User")
                         .WithMany()
-                        .HasForeignKey("UserId")
+                        .HasForeignKey("_UserId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 

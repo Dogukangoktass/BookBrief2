@@ -13,13 +13,13 @@ namespace BookBrief.DL.Models
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
             base.OnConfiguring(optionsBuilder);
-            optionsBuilder.UseSqlServer("server=DESKTOP-QL66EDG\\SQLEXPRESS; database=BookBriefDb; integrated security=true");
+            optionsBuilder.UseSqlServer("server=DESKTOP-QL66EDG\\SQLEXPRESS; database=BookBriefDatabase; integrated security=true");
         }
         public DbSet<Book> Book { get; set; }
         public DbSet<Category> Category { get; set; }
         public DbSet<Comment> Comment { get; set; }
         public DbSet<UserModel> User { get; set; }
-        public DbSet<Roles> Roles { get; set; }
+      
     }
 }
 
