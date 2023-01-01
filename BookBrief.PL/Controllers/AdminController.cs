@@ -17,6 +17,7 @@ namespace BookBrief.PL.Controllers
         CategoryRepository categoryRepository = new CategoryRepository();
         BookRepository bookRepository = new BookRepository();
         CommentRepository commentRepository = new CommentRepository();
+        UserRepository userRepository = new UserRepository();
         Context context = new Context();
         private readonly IWebHostEnvironment _webHostEnvironment;
         public AdminController(IWebHostEnvironment webHostEnvironment)
@@ -49,6 +50,35 @@ namespace BookBrief.PL.Controllers
             TempData["KategoriSayisi"] = context.Category.Count();
             return View();
         }
+        [HttpGet]
+        public IActionResult Profile()
+        {
+            int id = Convert.ToInt16(GetCookie("userId"));
+            var result = context.User.FirstOrDefault(x => x.Id == id);
+            ViewBag.kisi = result;
+
+            return View(result);
+        }
+
+        [HttpPost]
+        public IActionResult ProfilEdit(UserModel us)
+        {
+            var x = userRepository.TGet(us.Id);
+           
+            
+            if (ModelState.IsValid)
+            {
+                x.UserName = us.UserName;
+                x.Email = us.Email;
+                x.Password = us.Password;
+
+                userRepository.TUpdate(x);
+                return RedirectToAction("Profile");
+            }
+            return View();
+        }
+
+
         public IActionResult Books()
         {
             IEnumerable<Book> _blog = context.Book.Include(x => x._Category);
@@ -158,15 +188,21 @@ namespace BookBrief.PL.Controllers
         }
         public IActionResult Comments()
         {
-            CommentsVM commentVM = new CommentsVM();
+            //IEnumerable<Comment> comments = commentRepository.TList();
 
-           
+            var result = context.Comment.Where(x => x.IsShared == false).ToList();
 
+            return View(result);
 
-            //var comments = context.Comment.ToList();
-            IEnumerable<Category> categories = categoryRepository.TList();
+        }
 
-            return View();
+        
+        public IActionResult CommentsShared(int id)
+        {
+            var x = commentRepository.TGet(id);
+            x.IsShared = true;
+            commentRepository.TUpdate(x);
+            return View("Index");
         }
 
 

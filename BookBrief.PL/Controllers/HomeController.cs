@@ -184,6 +184,13 @@ namespace BookBrief.PL.Controllers
             bcomments._Comment = c.Comment.Where(x => x.BookId == id);
 
              var result = c.Book.Where(x => x.BookId == id);
+
+
+            var count = c.Comment.Where(x => x.BookId == id && x.IsShared == true).Count();
+            ViewBag.count = count;
+
+
+
             return View(result);
         }
         [AllowAnonymous]

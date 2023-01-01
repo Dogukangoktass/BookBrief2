@@ -1,4 +1,5 @@
-﻿@model IEnumerable<BookBrief.DL.Models.CommentsVM>
+﻿@using BookBrief.DL.Models
+@model List<BookBrief.DL.Models.Comment>
 
 @{
     ViewData["Title"] = "Yorumlar";
@@ -9,7 +10,7 @@
     <div class="col-md-7 mt-4">
         <div class="card">
             <div class="card-header pb-0 px-3">
-                <h6 class="mb-0">Son Yorumlar</h6>
+                <h6 class="mb-0">Onay Bekleyenler</h6>
             </div>
             <div class="card-body pt-4 p-3">
                 <ul class="list-group">
@@ -19,12 +20,47 @@
 
                         <li class="list-group-item border-0 d-flex p-4 mb-2 mt-3 bg-gray-100 border-radius-lg">
                             <div class="d-flex flex-column">
-                                <h6 class="mb-3 text-sm">@item._User.UserName</h6>
-                                <span class="mb-2 text-xs">Kitap Adı: <span class="text-dark font-weight-bold ms-sm-2">@item._Book.BookTitle</span></span>
-                                <span class="mb-2 text-xs">Tarih: <span class="text-dark ms-sm-2 font-weight-bold">@item._Comments.Date.ToShortDateString()</span></span>
+                                <h6 class="mb-3 text-sm">
+                                    @{
+                                        Context c = new Context();
+                                        var result = c.User.Where(x => x.Id == @item.UserId).FirstOrDefault();
+                                    }
+                                    @result.UserName
+                                </h6>
+                                <span class="mb-2 text-xs">
+                                    Kitap Adı: <span class="text-dark font-weight-bold ms-sm-2">
+                                        @{
+                                            var resultt = c.Book.Where(x => x.BookId == @item.BookId).FirstOrDefault();
+                                        }
+                                        @resultt.BookTitle
+                                     
+                                    </span>
+                                </span>
+                                <span class="mb-2 text-xs">Tarih: <span class="text-dark ms-sm-2 font-weight-bold">@item.Date.ToShortDateString()</span></span>
+                                <span class="mb-2 text-xs">
+                                    Durum :
+
+                                    @if (item.IsShared == false)
+                                    {
+                                        <span class="text-dark ms-sm-2 font-weight-bold">
+                                            Onaylanmadı
+                                        </span>
+                                    }
+                                    else
+                                    {
+                                        <span class="text-dark ms-sm-2 font-weight-bold">
+                                            Onaylandı
+                                        </span>
+                                    }
+
+                                </span>
+                                         <span class="mb-2 text-xs">
+                                    İçerik : @item.Text
+                                </span>
                             </div>
                             <div class="ms-auto text-end">
                                 <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="material-icons text-sm me-2">delete</i>Sil</a>
+                                <a class="btn btn-link text-success text-gradient px-3 mb-0" href="/Admin/CommentsShared/@item.Id" ><i class="material-icons text-sm me-2">send</i>Yayına Al</a>
                             </div>
                         </li>
                     }

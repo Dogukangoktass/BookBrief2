@@ -6,13 +6,13 @@ namespace BookBrief.PL.ViewComponents
 {
     public class GetComments : ViewComponent
     {
-
         Context c = new Context();
         CommentRepository commentRepository = new CommentRepository();
-        public IViewComponentResult Invoke()
+        UserRepository userRepository = new UserRepository();
+        public IViewComponentResult Invoke(int id)
         {
-            //var resultt =
-            return View();
+            var result = c.Comment.Where(x => x.BookId == id && x.IsShared==true).ToList();
+            return View(result);
         }
     }
 }
