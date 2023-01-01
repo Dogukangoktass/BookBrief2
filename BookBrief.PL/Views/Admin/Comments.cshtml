@@ -1,4 +1,4 @@
-﻿@model IEnumerable<BookBrief.DL.Models.CommentsVM>
+﻿@model IEnumerable<BookBrief.DL.Models.Comment>
 
 @{
     ViewData["Title"] = "Yorumlar";
@@ -19,9 +19,9 @@
 
                         <li class="list-group-item border-0 d-flex p-4 mb-2 mt-3 bg-gray-100 border-radius-lg">
                             <div class="d-flex flex-column">
-                                <h6 class="mb-3 text-sm">@item._User.UserName</h6>
-                                <span class="mb-2 text-xs">Kitap Adı: <span class="text-dark font-weight-bold ms-sm-2">@item._Book.BookTitle</span></span>
-                                <span class="mb-2 text-xs">Tarih: <span class="text-dark ms-sm-2 font-weight-bold">@item._Comments.Date.ToShortDateString()</span></span>
+                                <h6 class="mb-3 text-sm">@item.UserId</h6>
+                                <span class="mb-2 text-xs">Kitap Adı: <span class="text-dark font-weight-bold ms-sm-2">@item.BookId</span></span>
+                                <span class="mb-2 text-xs">Tarih: <span class="text-dark ms-sm-2 font-weight-bold">@item.Date.ToShortDateString()</span></span>
                             </div>
                             <div class="ms-auto text-end">
                                 <a class="btn btn-link text-danger text-gradient px-3 mb-0" href="javascript:;"><i class="material-icons text-sm me-2">delete</i>Sil</a>

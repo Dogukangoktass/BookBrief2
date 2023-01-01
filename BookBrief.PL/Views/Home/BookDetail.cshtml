@@ -21,6 +21,8 @@
     <div class="services-area2">
         <div class="container">
             <div class="row">
+
+
                 <div class="col-xl-12">
                     <div class="row">
                         <div class="col-xl-12">
@@ -94,34 +96,7 @@
                             <div class="comments-area">
                                 <h4>05 Comments</h4>
                                 <div class="comment-list">
-                                    @foreach (var x in Model)
-                                    {
-
-                                    }
-
-
-                                    <div class="single-comment justify-content-between d-flex">
-                                        <div class="user justify-content-between d-flex">
-                                            <div class="thumb">
-                                                <img src="~/assets/img/blog/comment_1.png" alt="">
-                                            </div>
-                                            <div class="desc">
-                                                <p class="comment">
-                                                    Multiply sea night grass fourth day sea lesser rule open subdue female fill which them
-                                                    Blessed, give fill lesser bearing multiply sea night grass fourth day sea lesser
-                                                </p>
-                                                <div class="d-flex justify-content-between">
-                                                    <div class="d-flex align-items-center">
-                                                        <h5>
-                                                            <a href="#">Emilly Blunt</a>
-                                                        </h5>
-                                                        <p class="date">December 4, 2017 at 3:12 pm </p>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
+                                    @await Component.InvokeAsync("GetComments",@item.BookId)
                                 </div>
 
                             </div>
@@ -130,36 +105,36 @@
                             <div class="comment-form">
                                 <h4>Yorum Yap</h4>
 
-                                 <form class="form-contact comment_form" asp-action="ShareComment" method="post" id="commentForm">
-                            <div class="row">
-                            <div class="col-12">
-                            <div class="form-group">
-                            <textarea class="form-control w-100" name="text" id="comment" cols="30" rows="9" placeholder="Yorumunuzu Yazınız"></textarea>
-                            <input name="bookid" value="@item.BookId" hidden>
-                            </div>
-                            </div>
+                                <form class="form-contact comment_form" asp-action="ShareComment" method="post" id="commentForm">
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="form-group">
+                                                <textarea class="form-control w-100" name="text" id="comment" cols="30" rows="9" placeholder="Yorumunuzu Yazınız"></textarea>
+                                                <input name="bookid" value="@item.BookId" hidden>
+                                            </div>
+                                        </div>
 
-                            </div>
-                            @if (User.Identity.IsAuthenticated)
-                            {
-                            if (User.IsInRole("User"))
-                            {
+                                    </div>
+                                    @if (User.Identity.IsAuthenticated)
+                                    {
+                                        if (User.IsInRole("User"))
+                                        {
 
-                            <div class="form-group">
-                            <button type="submit" asp-action="ShareComment" asp-all-route-id="@item.BookId" class="button button-contactForm btn_1 boxed-btn">Yorum Paylaş</button>
-                            </div>
-                            }
-                            }
-                            else
-                            {
-                            <div class="form-group">
-                            <button type="submit" class="button button-contactForm btn_1 boxed-btn">Yorum Yapmak İçin Giriş Yapınız!</button>
-                            </div>
-                            }
+                                            <div class="form-group">
+                                                <button type="submit" asp-action="ShareComment" asp-all-route-id="@item.BookId" class="button button-contactForm btn_1 boxed-btn">Yorum Paylaş</button>
+                                            </div>
+                                        }
+                                    }
+                                    else
+                                    {
+                                        <div class="form-group">
+                                            <button type="submit" class="button button-contactForm btn_1 boxed-btn">Yorum Yapmak İçin Giriş Yapınız!</button>
+                                        </div>
+                                    }
 
 
 
-                            </form>
+                                </form>
                             </div>
 
 
