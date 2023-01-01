@@ -11,11 +11,7 @@ namespace BookBrief.PL.ViewComponents
         public IViewComponentResult Invoke()
         {
             var result = c.Book.Distinct().OrderByDescending(d => d.Date).Take(6);
-            //Sorguda en çok yorum alandan en aza doğru 6 adet listeleyecek!!!!
-
-
-
-
+            
             return View(result);
         }
     }

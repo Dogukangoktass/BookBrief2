@@ -188,12 +188,21 @@ namespace BookBrief.PL.Controllers
         }
         public IActionResult Comments()
         {
-            CommentsVM commentVM = new CommentsVM();
+            //IEnumerable<Comment> comments = commentRepository.TList();
 
-            //var comments = context.Comment.ToList();
-            IEnumerable<Category> categories = categoryRepository.TList();
+            var result = context.Comment.Where(x => x.IsShared == false).ToList();
 
-            return View();
+            return View(result);
+
+        }
+
+        
+        public IActionResult CommentsShared(int id)
+        {
+            var x = commentRepository.TGet(id);
+            x.IsShared = true;
+            commentRepository.TUpdate(x);
+            return View("Index");
         }
 
 

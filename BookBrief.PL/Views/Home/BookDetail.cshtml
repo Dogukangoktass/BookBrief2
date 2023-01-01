@@ -37,7 +37,7 @@
                                     <p></p>
 
                                     <div class="review">
-                                        <p>3 Yorum</p>
+                                        <p>@ViewBag.count Yorum</p>
 
                                     </div>
                                 </div>
@@ -94,7 +94,7 @@
                         <div class="offset-xl-1 col-lg-9">
 
                             <div class="comments-area">
-                                <h4>05 Comments</h4>
+                                <h4> @ViewBag.count Yorum</h4>
                                 <div class="comment-list">
                                     @await Component.InvokeAsync("GetComments",@item.BookId)
                                 </div>

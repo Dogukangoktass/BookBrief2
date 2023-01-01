@@ -11,7 +11,7 @@ namespace BookBrief.PL.ViewComponents
         UserRepository userRepository = new UserRepository();
         public IViewComponentResult Invoke(int id)
         {
-            var result = c.Comment.Where(x => x.BookId == id).ToList();
+            var result = c.Comment.Where(x => x.BookId == id && x.IsShared==true).ToList();
             return View(result);
         }
     }
